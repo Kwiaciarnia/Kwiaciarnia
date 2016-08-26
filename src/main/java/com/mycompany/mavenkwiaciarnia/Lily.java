@@ -19,11 +19,11 @@ public class Lily extends Flower{
 
     @Override
     public String getDescription() {
-        return "Lily: blossom = " + blossomQuantity + " ;  colour = " + colour; 
+        return name + ": colour = " + colour + "; blossomQuantity = " + blossomQuantity;
     }
 
     @Override
-    public String smell() {
+    public String getSmell() {
         return "Smells like Lily with " + blossomQuantity + " blossom";
     }
     
