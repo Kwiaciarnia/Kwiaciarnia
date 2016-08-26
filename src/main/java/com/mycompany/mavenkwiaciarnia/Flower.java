@@ -5,11 +5,11 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-
-public class Main {
-    public static void main(String[] args) {
-        Model model = new Model(5);
-        View view = new View();
-        Controller controller = new Controller(model,view);
-    }
+/**
+ *
+ * @author Łukasz
+ */
+abstract class Flower {
+    private String name;
+    
 }
