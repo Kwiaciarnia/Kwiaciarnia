@@ -8,6 +8,8 @@ package com.mycompany.mavenkwiaciarnia;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Program");
+        Model model = new Model();
+        View view = new View();
+        Controller controller = new Controller(model,view);
     }
 }
