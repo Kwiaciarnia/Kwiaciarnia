@@ -5,10 +5,25 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author Łukasz
  */
 class Model {
+    private List<CashDesk> cashDesks;
+    private Client client;
+
+    public Model(int cashDeskQuantity) {
+        cashDesks = new LinkedList();
+        for(int i = 0 ; i < cashDeskQuantity ; i++){
+            cashDesks.add(new CashDesk(i));
+        }
+        client = null;
+    }
+    
+    
     
 }
