@@ -17,11 +17,11 @@ public class Tulip extends Flower {
 
     @Override
     public String getDescription() {
-        return "Tulip: colour = " + colour; 
+        return name + ": colour = " + colour;
     }
 
     @Override
-    public String smell() {
+    public String getSmell() {
         return "Smells like " + colour + " Tulip";
     }
     
