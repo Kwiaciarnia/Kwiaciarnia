@@ -27,6 +27,5 @@ abstract class Flower {
     }
     
     public abstract String getDescription();
-    
-    public abstract String smell();
+    public abstract String getSmell();
 }
