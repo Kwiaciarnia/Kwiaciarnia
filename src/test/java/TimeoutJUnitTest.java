@@ -39,12 +39,8 @@ public class TimeoutJUnitTest {
     }
 
     
-     @Test(timeout = 100000)
+     @Test(timeout = 10000)
      public void test() {
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException ex) {
-        
-        }
+         
      }
 }
