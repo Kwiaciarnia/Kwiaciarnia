@@ -9,6 +9,8 @@ package com.mycompany.mavenkwiaciarnia;
  *
  * @author Łukasz
  */
-public class FlowerFlyWeightFactory {
-    
+class FlowerFlyWeightFactory {
+    static Flower flyWeightFactory(String name,String colour){
+        return null;
+    }
 }
