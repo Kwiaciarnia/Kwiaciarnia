@@ -9,6 +9,20 @@ package com.mycompany.mavenkwiaciarnia;
  *
  * @author Łukasz
  */
-public class Tulip {
+public class Tulip extends Flower {
+
+    public Tulip(String colour) {
+        super("Tulip", colour);
+    }
+
+    @Override
+    public String getDescription() {
+        return "Tulip: colour = " + colour; 
+    }
+
+    @Override
+    public String smell() {
+        return "Smells like " + colour + " Tulip";
+    }
     
 }
