@@ -6,14 +6,28 @@ import org.junit.Test;
 
 public class FlowerFlyWeightFactoryJUnitTest {
     
-     @Test(timeout = 10000)
-     public void test() {
-         Flower f1 = FlowerFlyWeightFactory.flyWeightFactory("Tulip", "Czerwony");
-         Flower f2 = FlowerFlyWeightFactory.flyWeightFactory("Tulip", "Czerwony");
+     @Test
+     public void test1() {
+         Flower f1 = FlowerFlyWeightFactory.flyWeightFactory("Tulip", Flower.Colour.ORANGE);
+         Flower f2 = FlowerFlyWeightFactory.flyWeightFactory("Tulip", Flower.Colour.ORANGE);
          Assert.assertEquals(f1,f2);
-         Flower f3 = FlowerFlyWeightFactory.flyWeightFactory("No name", "Black");
+     }
+     
+     @Test
+     public void test2(){
+         Flower f3 = FlowerFlyWeightFactory.flyWeightFactory("No name", Flower.Colour.BLACK);
          Assert.assertNull(f3);
-         Flower f4 = FlowerFlyWeightFactory.flyWeightFactory("Lily", "Czarny",0,0);
+     }
+     
+     @Test
+     public void test3(){
+         Flower f4 = FlowerFlyWeightFactory.flyWeightFactory("Lily", Flower.Colour.BLACK,0,0);
          Assert.assertNull(f4);
+     }
+     
+     @Test
+     public void test4(){
+         Flower f5 = FlowerFlyWeightFactory.flyWeightFactory("Lily", Flower.Colour.BLACK,0);
+         Assert.assertEquals("Lily BLACK 0", f5.getDescription());
      }
 }
