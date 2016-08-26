@@ -19,15 +19,11 @@ public class Daisy extends Flower{
 
     @Override
     public String getDescription() {
-        if(isSmells){
-            return "Daisy: smells daisy";
-        }else{
-            return "Daisy: doesn't smell daisy";
-        }
+        return name + ": colour = " + colour + "; isSmells = " + isSmells;
     }
 
     @Override
-    public String smell() {
+    public String getSmell() {
         if(isSmells){
             return "Smells like Daisy";
         }else{
