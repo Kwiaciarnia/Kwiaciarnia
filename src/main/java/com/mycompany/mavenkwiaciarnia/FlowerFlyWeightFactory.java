@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Łukasz
  */
 public class FlowerFlyWeightFactory {
-    private static Map<String,Flower> map = new HashMap();
+    private static final Map<String,Flower> map = new HashMap();
     
     public static Flower flyWeightFactory(String name,Flower.Colour colour,Object... parameters){
         Flower flower = null;
