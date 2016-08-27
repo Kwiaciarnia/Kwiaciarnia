@@ -4,10 +4,6 @@ import com.mycompany.mavenkwiaciarnia.PriceList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Łukasz
- */
 public class SingletonJUnitTest {
     
     @Test
