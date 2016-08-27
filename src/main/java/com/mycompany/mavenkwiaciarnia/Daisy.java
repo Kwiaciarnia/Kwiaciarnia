@@ -5,21 +5,18 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
+
 public class Daisy extends Flower{
     private boolean isSmells;
     
-    public Daisy(boolean isSmells) {
-        super("Daisy", "White");
+    public Daisy(Flower.Colour colour,boolean isSmells) {
+        super("Daisy", colour);
         this.isSmells = isSmells;
     }
 
     @Override
     public String getDescription() {
-        return name + ": colour = " + colour + "; isSmells = " + isSmells;
+        return name +" " + colour + " " + isSmells;
     }
 
     @Override
