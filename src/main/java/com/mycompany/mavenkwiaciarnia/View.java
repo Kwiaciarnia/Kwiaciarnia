@@ -11,13 +11,10 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
-/**
- *
- * @author Łukasz
- */
-class View extends JFrame{
 
-    View() {
+public class View extends JFrame{
+
+    public View() {
         super("Kwiaciarnia");
         setResizable(false);
         setSize(800, 600);
@@ -27,11 +24,11 @@ class View extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    void update() {
+    public void update() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    void addActionListener(ActionListener listener){
+    public void addActionListener(ActionListener listener){
         
     }
 }
