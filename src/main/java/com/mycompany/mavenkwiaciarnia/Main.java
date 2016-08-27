@@ -26,6 +26,7 @@ public class Main {
             System.out.println(cash.getLastReceipt());
         } catch (Exception ex) {
             ex.printStackTrace();
+            System.exit(1);
         }
     }
 }
