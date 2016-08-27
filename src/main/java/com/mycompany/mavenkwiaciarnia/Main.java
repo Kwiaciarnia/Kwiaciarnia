@@ -5,14 +5,29 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Main {
     public static void main(String[] args) {
-        Model model = new Model(5);
-        View view = new View();
-        Controller controller = new Controller(model,view);
-        PriceList p = PriceList.getInstance();
-        Flower f = FlowerFlyWeightFactory.flyWeightFactory("Tulip",Flower.Colour.GREEN);
-        System.out.println(f);
+        try {
+            Model model = new Model(5);
+            View view = new View();
+            Controller controller = new Controller(model,view);
+            Customer customer = new Company(2, 2);
+            Flower f = FlowerFlyWeightFactory.flyWeightFactory("Tulip",NameColourClass.Colour.GREEN);
+            f = new Bow(f);
+            customer.add(f);
+            f = new Ribbon(f);
+            f = new Bow(f);
+            customer.add(f);
+            
+            CashDesk cash = new CashDesk(0);
+            cash.serveCustomer(customer);
+            System.out.println(cash.getLastReceipt());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

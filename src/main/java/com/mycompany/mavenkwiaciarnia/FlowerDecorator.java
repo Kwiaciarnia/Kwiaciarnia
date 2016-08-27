@@ -9,9 +9,10 @@ package com.mycompany.mavenkwiaciarnia;
  *
  * @author XXX
  */
-public interface Flower {
-    public String getCatalogueDescription();
-    public String getDescription();
-    public String getSmell();
-    public String getAccessories();
+public abstract class FlowerDecorator implements Flower{
+    protected Flower decoratedFlower;
+    
+    public FlowerDecorator(Flower flower){
+        this.decoratedFlower = flower;
+    }
 }

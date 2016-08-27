@@ -5,34 +5,36 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-
-public class Lily extends NameColourClass implements Flower{
-    private int blossomQuantity;
+/**
+ *
+ * @author XXX
+ */
+public class Net extends FlowerDecorator{
     
-    public Lily(NameColourClass.Colour colour,int blossomQuantity) {
-        super("Lily", colour);
-        this.blossomQuantity = blossomQuantity;
+    public Net(Flower decoratedFlower) {
+        super(decoratedFlower);
     }
 
     @Override
     public String getDescription() {
-        return name + " " + colour+ " " + blossomQuantity;
+       return decoratedFlower.getDescription() + " with net";
     }
 
     @Override
     public String getSmell() {
-        return "Smells like Lily with " + blossomQuantity + " blossom";
+        return decoratedFlower.getSmell();
     }
 
     @Override
     public String getCatalogueDescription() {
-        return name + " " + colour+ " " + blossomQuantity;
+        return decoratedFlower.getCatalogueDescription();
     }
 
     @Override
     public String getAccessories() {
-        return "";
+        return decoratedFlower.getAccessories() + " net";
     }
+    
     @Override
     public String toString(){
         return this.getDescription();

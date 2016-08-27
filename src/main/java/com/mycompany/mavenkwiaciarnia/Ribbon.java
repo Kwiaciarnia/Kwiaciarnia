@@ -5,33 +5,34 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
+/**
+ *
+ * @author XXX
+ */
+public class Ribbon extends FlowerDecorator{
 
-public class Lily extends NameColourClass implements Flower{
-    private int blossomQuantity;
-    
-    public Lily(NameColourClass.Colour colour,int blossomQuantity) {
-        super("Lily", colour);
-        this.blossomQuantity = blossomQuantity;
+    public Ribbon(Flower decoratedFlower) {
+        super(decoratedFlower);
     }
 
     @Override
     public String getDescription() {
-        return name + " " + colour+ " " + blossomQuantity;
+       return decoratedFlower.getDescription() + " with ribbon";
     }
 
     @Override
     public String getSmell() {
-        return "Smells like Lily with " + blossomQuantity + " blossom";
+        return decoratedFlower.getSmell();
     }
 
     @Override
     public String getCatalogueDescription() {
-        return name + " " + colour+ " " + blossomQuantity;
+        return decoratedFlower.getCatalogueDescription();
     }
 
     @Override
     public String getAccessories() {
-        return "";
+        return decoratedFlower.getAccessories() + " ribbon";
     }
     @Override
     public String toString(){

@@ -14,7 +14,7 @@ import java.util.Map;
 public class FlowerFlyWeightFactory {
     private static final Map<String,Flower> map = new HashMap();
     
-    public static Flower flyWeightFactory(String name,Flower.Colour colour,Object... parameters){
+    public static Flower flyWeightFactory(String name,NameColourClass.Colour colour,Object... parameters){
         Flower flower = null;
         String f = name + " " + colour.toString();
         for(int i = 0 ; i < parameters.length ; i++){
@@ -34,11 +34,11 @@ public class FlowerFlyWeightFactory {
                     param[0] = colour;
                 }
                 flower = (Flower) constructor.newInstance(param);
-                map.put(flower.getDescription(),flower);
+                map.put(flower.getCatalogueDescription(),flower);
                 PriceList priceList = PriceList.getInstance();
-                Double price = priceList.getPrice(flower.getDescription());
+                Double price = priceList.getPrice(flower.getCatalogueDescription());
                 if(price == null){
-                    priceList.setPrice(flower.getDescription(), 50.0);
+                    priceList.setPrice(flower.getCatalogueDescription(), 50.0);
                 }
                 return flower;
             } catch (ClassNotFoundException ex) {

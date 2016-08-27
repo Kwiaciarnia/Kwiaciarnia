@@ -5,14 +5,58 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class CashDesk {
     private int id;
     private PriceList priceList;
+    private String lastReceipt;
 
     public CashDesk(int id) {
         this.id = id;
         this.priceList = PriceList.getInstance();
+        lastReceipt = "";
     }
     
+    public double serveCustomer(Customer customer){
+        List<Flower> flowers = customer.get();
+        
+        Double price = 0.0;
+        lastReceipt = "\tReceipt\n";
+        lastReceipt += "Cash deck number " + id + "\n";
+        lastReceipt += new Date() + "\n";
+        lastReceipt += "Products:\n";
+        
+        for(Flower flower : flowers){
+            double p;
+            try {
+                p = priceList.getPrice(flower.getCatalogueDescription());
+            } catch (Exception ex) {
+                p = 100.0;
+            }
+            String[] accessories = flower.getAccessories().split(" ");
+            for(int i = 1 ; i < accessories.length ; i++){
+                double priceAccessories = 0.0;
+                try {
+                    priceAccessories = priceList.getPrice(accessories[i]);
+                } catch (Exception ex) {
+                    priceAccessories = 5.0;
+                }
+                p += priceAccessories;
+            }
+            lastReceipt += "\t" + flower.getDescription() + " " + p + " PLN\n";
+            price += p;
+        }
+        lastReceipt += "\nTotal = " + price + " PLN";
+        
+        return price;
+    }
+    
+    public String getLastReceipt(){
+        return lastReceipt;
+    }
 }

@@ -6,9 +6,9 @@
 package com.mycompany.mavenkwiaciarnia;
 
 
-public class Tulip extends Flower {
+public class Tulip extends NameColourClass implements Flower{
 
-    public Tulip(Flower.Colour colour) {
+    public Tulip(NameColourClass.Colour colour) {
         super("Tulip", colour);
     }
 
@@ -21,5 +21,18 @@ public class Tulip extends Flower {
     public String getSmell() {
         return "Smells like " + colour + " Tulip";
     }
-    
+
+    @Override
+    public String getCatalogueDescription() {
+        return name + " " +colour;
+    }
+
+    @Override
+    public String getAccessories() {
+        return "";
+    }
+    @Override
+    public String toString(){
+        return this.getDescription();
+    }
 }

@@ -6,10 +6,10 @@
 package com.mycompany.mavenkwiaciarnia;
 
 
-public class Narcissus extends Flower{
+public class Narcissus extends NameColourClass implements Flower{
     private int leavesQuantity;
     
-    public Narcissus(Flower.Colour colour,int leavesQuantity) {
+    public Narcissus(NameColourClass.Colour colour,int leavesQuantity) {
         super("Narcissus", colour);
         this.leavesQuantity = leavesQuantity;
     }
@@ -22,5 +22,20 @@ public class Narcissus extends Flower{
     @Override
     public String getSmell() {
         return "Smells like Narcissus with " + leavesQuantity + " leaves";
+    }
+
+    @Override
+    public String getCatalogueDescription() {
+        return name + " " + colour + " " + leavesQuantity;
+    }
+
+    @Override
+    public String getAccessories() {
+        return "";
+    }
+    
+    @Override
+    public String toString(){
+        return this.getDescription();
     }
 }

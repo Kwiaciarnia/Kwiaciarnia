@@ -6,10 +6,10 @@
 package com.mycompany.mavenkwiaciarnia;
 
 
-public class Daisy extends Flower{
+public class Daisy extends NameColourClass implements Flower{
     private boolean isSmells;
     
-    public Daisy(Flower.Colour colour,boolean isSmells) {
+    public Daisy(NameColourClass.Colour colour,boolean isSmells) {
         super("Daisy", colour);
         this.isSmells = isSmells;
     }
@@ -26,5 +26,20 @@ public class Daisy extends Flower{
         }else{
             return "It doesn't smell";
         }
+    }
+
+    @Override
+    public String getCatalogueDescription() {
+        return name +" " + colour + " " + isSmells;
+    }
+
+    @Override
+    public String getAccessories() {
+        return "";
+    }
+    
+    @Override
+    public String toString(){
+        return this.getDescription();
     }
 }
