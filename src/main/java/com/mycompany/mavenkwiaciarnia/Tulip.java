@@ -11,13 +11,13 @@ package com.mycompany.mavenkwiaciarnia;
  */
 public class Tulip extends Flower {
 
-    public Tulip(String colour) {
+    public Tulip(Flower.Colour colour) {
         super("Tulip", colour);
     }
 
     @Override
     public String getDescription() {
-        return name + ": colour = " + colour;
+        return name + " " +colour;
     }
 
     @Override
