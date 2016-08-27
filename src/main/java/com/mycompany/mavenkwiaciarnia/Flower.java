@@ -5,15 +5,15 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
-abstract class Flower {
+
+public abstract class Flower {
+    public enum Colour{
+        WHITE, BLACK, RED, BLUE, GREEN, ORANGE, YELLOW
+    }
     protected String name;
-    protected String colour;
+    protected Colour colour;
     
-    Flower(String name,String colour){
+    public Flower(String name,Flower.Colour colour){
         this.name = name;
         this.colour = colour;
     }
@@ -22,10 +22,14 @@ abstract class Flower {
         return name;
     }
 
-    public String getColour() {
+    public Flower.Colour getColour() {
         return colour;
     }
     
+    @Override
+    public String toString(){
+        return getDescription();
+    }
     public abstract String getDescription();
     public abstract String getSmell();
 }
