@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Model {
     private List<CashDesk> cashDesks;
-    private Client client;
+    private Customer client;
 
     public Model(int cashDeskQuantity) {
         cashDesks = new LinkedList();
