@@ -9,6 +9,7 @@ import java.util.List;
 
 
 public interface Customer {
-    public void add(Flower flower);
+    public void add(Flower flower) throws Exception;
+    public void remove(Flower flower);
     public List<Flower> get();
 }
