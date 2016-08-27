@@ -5,10 +5,7 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
+
 public class Tulip extends Flower {
 
     public Tulip(Flower.Colour colour) {
