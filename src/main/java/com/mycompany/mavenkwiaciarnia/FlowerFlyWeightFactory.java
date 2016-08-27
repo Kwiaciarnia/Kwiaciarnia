@@ -10,10 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Łukasz
- */
+
 public class FlowerFlyWeightFactory {
     private static final Map<String,Flower> map = new HashMap();
     
