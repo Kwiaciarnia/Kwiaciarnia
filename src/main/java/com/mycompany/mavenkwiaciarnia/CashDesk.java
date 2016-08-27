@@ -5,15 +5,12 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
-class CashDesk {
+
+public class CashDesk {
     private int id;
     private PriceList priceList;
 
-    CashDesk(int id) {
+    public CashDesk(int id) {
         this.id = id;
         this.priceList = PriceList.getInstance();
     }
