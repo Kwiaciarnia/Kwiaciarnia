@@ -8,11 +8,8 @@ package com.mycompany.mavenkwiaciarnia;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Łukasz
- */
-class PriceList {
+
+public class PriceList {
     private static final PriceList instance = new PriceList();
     private Map<String,Double> priceMap;
     private PriceList(){
@@ -28,11 +25,6 @@ class PriceList {
     }
     
     public Double getPrice(String productName) throws Exception{
-        Double productPrice = priceMap.get(productName);
-        if(productPrice == null){
-            throw new Exception("Price list does't contain product " + productName);
-        }else{
-            return productPrice;
-        }
+        return priceMap.get(productName);
     }
 }
