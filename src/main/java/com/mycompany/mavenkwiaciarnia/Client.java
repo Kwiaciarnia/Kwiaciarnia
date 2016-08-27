@@ -5,7 +5,10 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
+import java.util.List;
 
-public class Client {
-    
+
+public interface Client {
+    public void add(Flower flower);
+    public List<Flower> get();
 }
