@@ -5,10 +5,7 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
-class Client {
+
+public class Client {
     
 }
