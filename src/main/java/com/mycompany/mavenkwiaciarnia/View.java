@@ -12,12 +12,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JTextField;
 
 
 public class View extends JFrame{
     JButton exit;
     JButton individual;
     JButton company;
+    JTextField indCapacity;
+    JTextField comBoxCapacity;
+    JTextField comConCapacity;
 
     public View() {
         super("Kwiaciarnia");
@@ -43,18 +47,48 @@ public class View extends JFrame{
         company.setBounds(250 , 150+100, 300 , 50);
         company.setActionCommand("COMPANY");
         
+        indCapacity = new JTextField("Write you basket capacity");
+        indCapacity.setBounds(250, 100, 300, 50);
+        
+        comBoxCapacity = new JTextField("Write you box capacity");
+        comBoxCapacity.setBounds(250, 200, 150, 50);
+        
+        comConCapacity = new JTextField("Write you container capacity");
+        comConCapacity.setBounds(250+150, 200, 150, 50);
+        
+        
         getLayeredPane().add(exit,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(individual,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(company,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(indCapacity,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(comBoxCapacity,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(comConCapacity,JLayeredPane.MODAL_LAYER);
     }
     
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getIndCapacity(){
+        return indCapacity.getText();
+    }
+    
+    public String getComBoxCapacity(){
+        return comBoxCapacity.getText();
+    }
+    
+    public String getComConCapacity(){
+        return comConCapacity.getText();
     }
     
     public void addActionListener(ActionListener listener){
         exit.addActionListener(listener);
         individual.addActionListener(listener);
         company.addActionListener(listener);
+    }
+
+    void setShopping() {
+        exit.setVisible(false);
+        individual.setVisible(false);
+        company.setVisible(false);
+        indCapacity.setVisible(false);
+        comBoxCapacity.setVisible(false);
+        comConCapacity.setVisible(false);
     }
 }

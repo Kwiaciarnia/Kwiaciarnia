@@ -18,19 +18,35 @@ public class Controller implements ActionListener{
         this.view = view;
         view.addActionListener(this);
     }
-    
-    public void updateView(){
-        view.update();
-    }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if(ae.getActionCommand().equals("EXIT")){
             System.exit(0);
         }else if(ae.getActionCommand().equals("INDIVIDUAL")){
-            System.exit(0);
+            int count;
+            try{
+                count = Math.abs(Integer.parseInt(view.getIndCapacity()));
+            }catch(Exception ex){
+                count = 10;
+            }
+            model.setCustomer(new Individual(count));
+            view.setShopping();
         }else if(ae.getActionCommand().equals("COMPANY")){
-            System.exit(0);
+            int countB;
+            try{
+                countB = Math.abs(Integer.parseInt(view.getComBoxCapacity()));
+            }catch(Exception ex){
+                countB = 10;
+            }
+            int countC;
+            try{
+                countC = Math.abs(Integer.parseInt(view.getComConCapacity()));
+            }catch(Exception ex){
+                countC = 10;
+            }
+            model.setCustomer(new Company(countB,countC));
+            view.setShopping();
         }
     }
     
