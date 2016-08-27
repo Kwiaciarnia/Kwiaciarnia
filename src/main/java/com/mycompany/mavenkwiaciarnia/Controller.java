@@ -5,20 +5,17 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
-class Controller {
+
+public class Controller {
     Model model;
     View view;
 
-    Controller(Model model, View view) {
+    public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
     
-    void updateView(){
+    public void updateView(){
         view.update();
     }
     
