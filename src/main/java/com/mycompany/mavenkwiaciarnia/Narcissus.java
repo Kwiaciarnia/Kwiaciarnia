@@ -5,21 +5,18 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
+
 public class Narcissus extends Flower{
     private int leavesQuantity;
     
-    public Narcissus(int leavesQuantity,String colour) {
+    public Narcissus(Flower.Colour colour,int leavesQuantity) {
         super("Narcissus", colour);
         this.leavesQuantity = leavesQuantity;
     }
 
     @Override
     public String getDescription() {
-        return name + ": colour = " + colour + "; leavesQuantity = " + leavesQuantity;
+        return name + " " + colour + " " + leavesQuantity;
     }
 
     @Override
