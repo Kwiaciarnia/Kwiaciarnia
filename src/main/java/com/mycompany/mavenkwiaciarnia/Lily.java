@@ -5,10 +5,7 @@
  */
 package com.mycompany.mavenkwiaciarnia;
 
-/**
- *
- * @author Łukasz
- */
+
 public class Lily extends Flower{
     private int blossomQuantity;
     
