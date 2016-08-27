@@ -12,14 +12,14 @@ package com.mycompany.mavenkwiaciarnia;
 public class Lily extends Flower{
     private int blossomQuantity;
     
-    public Lily(int blossomQuantity,String colour) {
+    public Lily(Flower.Colour colour,int blossomQuantity) {
         super("Lily", colour);
         this.blossomQuantity = blossomQuantity;
     }
 
     @Override
     public String getDescription() {
-        return name + ": colour = " + colour + "; blossomQuantity = " + blossomQuantity;
+        return name + " " + colour+ " " + blossomQuantity;
     }
 
     @Override
