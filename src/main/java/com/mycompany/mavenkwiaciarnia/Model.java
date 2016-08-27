@@ -8,11 +8,8 @@ package com.mycompany.mavenkwiaciarnia;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- *
- * @author Łukasz
- */
-class Model {
+
+public class Model {
     private List<CashDesk> cashDesks;
     private Client client;
 
