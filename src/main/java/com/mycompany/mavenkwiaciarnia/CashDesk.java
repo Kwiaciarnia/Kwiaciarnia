@@ -59,4 +59,8 @@ public class CashDesk {
     public String getLastReceipt(){
         return lastReceipt;
     }
+    
+    public int getID(){
+        return id;
+    }
 }
