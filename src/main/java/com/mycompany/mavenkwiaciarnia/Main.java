@@ -11,5 +11,8 @@ public class Main {
         Model model = new Model(5);
         View view = new View();
         Controller controller = new Controller(model,view);
+        PriceList p = PriceList.getInstance();
+        Flower f = FlowerFlyWeightFactory.flyWeightFactory("Tulip",Flower.Colour.GREEN);
+        System.out.println(f);
     }
 }
