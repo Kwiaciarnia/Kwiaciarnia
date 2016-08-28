@@ -46,10 +46,10 @@ public class CashDesk {
                 }
                 p += priceAccessories;
             }
-            lastReceipt += "\t" + flower.getDescription() + " " + p + " PLN\n";
+            lastReceipt += "\t" + flower.getDescription() + " " + ((int) (p*100))/100.0 + " PLN\n";
             price += p;
         }
-        lastReceipt += "\nTotal = " + price + " PLN";
+        lastReceipt += "\nTotal = " + ((int) (price*100))/100.0 + " PLN";
         
         return price;
     }
