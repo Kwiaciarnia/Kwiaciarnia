@@ -40,18 +40,18 @@ public class Individual implements Customer{
     }
 
     @Override
-    public void remove(Flower flower) {
-        flowers.remove(flower);
+    public boolean remove(Flower flower) {
+        return flowers.remove(flower);
     }
 
     @Override
-    public void removeByDescription(String description) {
+    public Flower removeByDescription(String description) {
         for(int i = 0 ; i < flowers.size() ; i++){
             if(flowers.get(i).getDescription().equals(description)){
-                flowers.remove(i);
-                break;
+                return flowers.remove(i);
             }
         }
+        return null;
     }
     
 }

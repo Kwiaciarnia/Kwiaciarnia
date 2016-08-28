@@ -57,13 +57,14 @@ public class Company implements Customer{
     }
 
     @Override
-    public void remove(Flower flower) {
+    public boolean remove(Flower flower) {
         if(!flowers.isEmpty()){
             List<Flower> lastBox = flowers.get(flowers.size()-1);
             if(lastBox.remove(flower) == true){
                 if(lastBox.isEmpty()){
                     flowers.remove(flowers.size()-1);
                 }
+                return true;
             } else {
                 for (int i = flowers.size() - 2; i >= 0; i--) {
                     if(flowers.get(i).remove(flower)){
@@ -72,10 +73,12 @@ public class Company implements Customer{
                         if(lastBox.isEmpty()){
                             flowers.remove(flowers.size()-1);
                         }
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     @Override
@@ -88,33 +91,35 @@ public class Company implements Customer{
     }
 
     @Override
-    public void removeByDescription(String description) {
+    public Flower removeByDescription(String description) {
+        Flower removed = null;
         if(!flowers.isEmpty()){
             List<Flower> lastBox = flowers.get(flowers.size()-1);
             int index = -1;
             for(int i = 0; i < flowers.size(); i++) {
                 if (lastBox.get(i).getDescription().equals(description)) {
-                    lastBox.remove(i);
+                    removed = lastBox.remove(i);
                     if (lastBox.isEmpty()) {
                         flowers.remove(flowers.size() - 1);
                     }
-                    return;
+                    return removed;
                 }
             }
             for (int i = flowers.size() - 2; i >= 0; i--) {
                 for(int j = 0 ; j < flowers.get(i).size() ; j++){
                     if(flowers.get(i).get(j).getDescription().equals(description)){
-                        flowers.get(i).remove(j);
+                        removed = flowers.get(i).remove(j);
                         Flower f = lastBox.remove(lastBox.size() - 1);
                         flowers.get(i).add(f);
                         if (lastBox.isEmpty()) {
                             flowers.remove(flowers.size() - 1);
                         }
-                        return;
+                        return removed;
                     }
                 }
             }
         }
+        return null;
     }
     
 }

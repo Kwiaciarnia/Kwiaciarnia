@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface Customer {
     public void add(Flower flower) throws Exception;
-    public void remove(Flower flower);
-    public void removeByDescription(String description);
+    public boolean remove(Flower flower);
+    public Flower removeByDescription(String description);
     public List<Flower> get();
 }
