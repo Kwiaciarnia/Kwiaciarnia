@@ -43,5 +43,15 @@ public class Individual implements Customer{
     public void remove(Flower flower) {
         flowers.remove(flower);
     }
+
+    @Override
+    public void removeByDescription(String description) {
+        for(int i = 0 ; i < flowers.size() ; i++){
+            if(flowers.get(i).getDescription().equals(description)){
+                flowers.remove(i);
+                break;
+            }
+        }
+    }
     
 }

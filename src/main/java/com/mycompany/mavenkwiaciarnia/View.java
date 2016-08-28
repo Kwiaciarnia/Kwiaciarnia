@@ -7,15 +7,19 @@ package com.mycompany.mavenkwiaciarnia;
 
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -36,10 +40,18 @@ public class View extends JFrame implements FocusListener{
     JScrollPane receiptScrollPane;
     JComboBox names;
     JComboBox colours;
+    JComboBox accessories;
+    JButton addAccessory;
+    JButton addFlower;
     JButton add;
     JComboBox flowers;
     JButton remove;
     JButton okBasket;
+    JList<String> accessoriesList;
+    DefaultListModel<String> listModel;
+    JScrollPane accessoriesPane;
+    JButton doneFlower;
+    JLabel yourBasket;
 
     public View() {
         super("Florist's");
@@ -113,6 +125,13 @@ public class View extends JFrame implements FocusListener{
         names.addItem("Tulip");
         names.setVisible(false);
         
+        accessories = new JComboBox();
+        accessories.setBounds(100, 50, 300, 50);
+        accessories.addItem("Bow");
+        accessories.addItem("Net");
+        accessories.addItem("Ribbon");
+        accessories.setVisible(false);
+        
         colours = new JComboBox();
         colours.setBounds(50, 100, 300, 50);
         for(NameColourClass.Colour c : NameColourClass.Colour.values()){
@@ -120,9 +139,19 @@ public class View extends JFrame implements FocusListener{
         }
         colours.setVisible(false);
         
+        addAccessory = new JButton("ADD");
+        addAccessory.setVisible(false);
+        addAccessory.setBounds(400, 50, 300 , 50);
+        addAccessory.setActionCommand("ADDACCESSORY");
+        
+        addFlower = new JButton("ADD FLOWER");
+        addFlower.setVisible(false);
+        addFlower.setBounds(250, 75, 300 , 50);
+        addFlower.setActionCommand("ADDFLOWER");
+        
         add = new JButton("ADD");
         add.setVisible(false);
-        add.setBounds(400 , 75, 200 , 50);
+        add.setBounds(250, 75, 300 , 50);
         add.setActionCommand("ADD");
         
         remove = new JButton("REMOVE");
@@ -131,13 +160,32 @@ public class View extends JFrame implements FocusListener{
         remove.setActionCommand("REMOVE");
         
         flowers = new JComboBox();
-        flowers.setBounds(50, 300, 300, 50);
+        flowers.setBounds(10, 300, 390, 50);
         flowers.setVisible(false);
+        
+        yourBasket = new JLabel("Your basket");
+        yourBasket.setBounds(10, 250, 390, 50);
+        yourBasket.setFont(new Font("Garamond", Font.PLAIN, 30));
+        yourBasket.setVisible(false);
         
         okBasket = new JButton("OK");
         okBasket.setVisible(false);
         okBasket.setBounds(250 , 500, 300 , 50);
         okBasket.setActionCommand("OKBASKET");
+        
+        listModel = new DefaultListModel();
+        
+        accessoriesList = new JList<>(listModel);
+        accessoriesList.setVisible(true);
+        
+        accessoriesPane = new JScrollPane(accessoriesList);
+        accessoriesPane.setBounds(100, 200, 300, 350);
+        accessoriesPane.setVisible(false);
+        
+        doneFlower = new JButton("DONE");
+        doneFlower.setVisible(false);
+        doneFlower.setBounds(400, 300, 300 , 50);
+        doneFlower.setActionCommand("DONEFLOWER");
         
         getLayeredPane().add(exit,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(individual,JLayeredPane.MODAL_LAYER);
@@ -156,6 +204,12 @@ public class View extends JFrame implements FocusListener{
         getLayeredPane().add(remove,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(flowers,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(okBasket,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(addAccessory,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(addFlower,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(accessories,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(accessoriesPane,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(doneFlower,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(yourBasket,JLayeredPane.MODAL_LAYER);
     }
     
     public String getIndCapacity(){
@@ -170,6 +224,22 @@ public class View extends JFrame implements FocusListener{
         return comConCapacity.getText();
     }
     
+    public String getNameColour(){
+        return names.getSelectedItem() + " " + colours.getSelectedItem();
+    }
+    
+    public String getDecorator(){
+        return accessories.getSelectedItem().toString();
+    }
+    
+    public void addDecoratorToList(String decorator){
+        listModel.addElement(decorator);
+    }
+    
+    public String getDecriptionOfFlowerToRemove(){
+        return (String) flowers.getSelectedItem();
+    }
+    
     public void addActionListener(ActionListener listener){
         exit.addActionListener(listener);
         individual.addActionListener(listener);
@@ -180,6 +250,9 @@ public class View extends JFrame implements FocusListener{
         add.addActionListener(listener);
         remove.addActionListener(listener);
         okBasket.addActionListener(listener);
+        addAccessory.addActionListener(listener);
+        addFlower.addActionListener(listener);
+        doneFlower.addActionListener(listener);
     }
     
     public void setMainMenu(){
@@ -203,6 +276,12 @@ public class View extends JFrame implements FocusListener{
         flowers.setVisible(false);
         remove.setVisible(false);
         okBasket.setVisible(false);
+        addAccessory.setVisible(false);
+        addFlower.setVisible(false);
+        accessories.setVisible(false);
+        accessoriesPane.setVisible(false);
+        doneFlower.setVisible(false);
+        yourBasket.setVisible(false);
     }
 
     public void setShopping(List<Integer> cashDeskIDs) {
@@ -228,6 +307,12 @@ public class View extends JFrame implements FocusListener{
         }
         okReceipt.setVisible(false);
         receiptScrollPane.setVisible(false);
+        addAccessory.setVisible(false);
+        addFlower.setVisible(false);
+        accessories.setVisible(false);
+        accessoriesPane.setVisible(false);
+        doneFlower.setVisible(false);
+        yourBasket.setVisible(false);
     }
     
     public int getSelectedCashDeskNumber(){
@@ -255,6 +340,12 @@ public class View extends JFrame implements FocusListener{
         okReceipt.setVisible(true);
         this.receipt.setText(receipt);
         receiptScrollPane.setVisible(true);
+        addAccessory.setVisible(false);
+        addFlower.setVisible(false);
+        accessories.setVisible(false);
+        accessoriesPane.setVisible(false);
+        doneFlower.setVisible(false);
+        yourBasket.setVisible(false);
     }
     
     public void setBasket(List<Flower> flowersList){
@@ -270,8 +361,8 @@ public class View extends JFrame implements FocusListener{
         okReceipt.setVisible(false);
         receiptScrollPane.setVisible(false);
         
-        names.setVisible(true);
-        colours.setVisible(true);
+        names.setVisible(false);
+        colours.setVisible(false);
         add.setVisible(true);
         flowers.setVisible(true);
         remove.setVisible(true);
@@ -281,6 +372,65 @@ public class View extends JFrame implements FocusListener{
         for(Flower f : flowersList){
             flowers.addItem(f.getDescription());
         }
+        addAccessory.setVisible(false);
+        addFlower.setVisible(false);
+        accessories.setVisible(false);
+        accessoriesPane.setVisible(false);
+        doneFlower.setVisible(false);
+        yourBasket.setVisible(true);
+    }
+    
+    public void setNameColourMenu(){
+        exit.setVisible(false);
+        individual.setVisible(false);
+        company.setVisible(false);
+        indCapacity.setVisible(false);
+        comBoxCapacity.setVisible(false);
+        comConCapacity.setVisible(false);
+        add.setVisible(false);
+        flowers.setVisible(false);
+        remove.setVisible(false);
+        okBasket.setVisible(false);
+        basket.setVisible(false);
+        cashDesk.setVisible(false);
+        comboCashDesk.setVisible(false);
+        okReceipt.setVisible(false);
+        receiptScrollPane.setVisible(false);
+        names.setVisible(true);
+        colours.setVisible(true);
+        addAccessory.setVisible(false);
+        addFlower.setVisible(true);
+        accessories.setVisible(false);
+        accessoriesPane.setVisible(false);
+        doneFlower.setVisible(false);
+        yourBasket.setVisible(false);
+    }
+    
+    public void setAddDecorators(){
+        exit.setVisible(false);
+        individual.setVisible(false);
+        company.setVisible(false);
+        indCapacity.setVisible(false);
+        comBoxCapacity.setVisible(false);
+        comConCapacity.setVisible(false);
+        add.setVisible(false);
+        flowers.setVisible(false);
+        remove.setVisible(false);
+        okBasket.setVisible(false);
+        basket.setVisible(false);
+        cashDesk.setVisible(false);
+        comboCashDesk.setVisible(false);
+        okReceipt.setVisible(false);
+        receiptScrollPane.setVisible(false);
+        names.setVisible(false);
+        colours.setVisible(false);
+        addAccessory.setVisible(true);
+        addFlower.setVisible(false);
+        accessories.setVisible(true);
+        listModel.clear();
+        accessoriesPane.setVisible(true);
+        doneFlower.setVisible(true);
+        yourBasket.setVisible(false);
     }
 
     @Override

@@ -86,5 +86,35 @@ public class Company implements Customer{
         });
         return list;
     }
+
+    @Override
+    public void removeByDescription(String description) {
+        if(!flowers.isEmpty()){
+            List<Flower> lastBox = flowers.get(flowers.size()-1);
+            int index = -1;
+            for(int i = 0; i < flowers.size(); i++) {
+                if (lastBox.get(i).getDescription().equals(description)) {
+                    lastBox.remove(i);
+                    if (lastBox.isEmpty()) {
+                        flowers.remove(flowers.size() - 1);
+                    }
+                    return;
+                }
+            }
+            for (int i = flowers.size() - 2; i >= 0; i--) {
+                for(int j = 0 ; j < flowers.get(i).size() ; j++){
+                    if(flowers.get(i).get(j).getDescription().equals(description)){
+                        flowers.get(i).remove(j);
+                        Flower f = lastBox.remove(lastBox.size() - 1);
+                        flowers.get(i).add(f);
+                        if (lastBox.isEmpty()) {
+                            flowers.remove(flowers.size() - 1);
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+    }
     
 }
