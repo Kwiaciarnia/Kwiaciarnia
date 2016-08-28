@@ -9,9 +9,14 @@ package com.mycompany.mavenkwiaciarnia;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -24,6 +29,10 @@ public class View extends JFrame{
     JTextField comConCapacity;
     JButton basket;
     JButton cashDesk;
+    JComboBox comboCashDesk;
+    JButton okReceipt;
+    JTextArea receipt;
+    JScrollPane receiptScrollPane;
 
     public View() {
         super("Florist's");
@@ -65,8 +74,26 @@ public class View extends JFrame{
         
         cashDesk = new JButton("CASHDESK");
         cashDesk.setVisible(false);
-        cashDesk.setBounds(250 , 150+100+100, 300 , 50);
+        cashDesk.setBounds(250 + 150 , 350, 300 , 50);
         cashDesk.setActionCommand("CASHDESK");
+        
+        comboCashDesk = new JComboBox();
+        comboCashDesk.setVisible(false);
+        comboCashDesk.setBounds(100, 350, 300, 50);
+        
+        okReceipt = new JButton("OK");
+        okReceipt.setVisible(false);
+        okReceipt.setBounds(250 , 500, 300 , 50);
+        okReceipt.setActionCommand("OKRECEIPT");
+        
+        receipt = new JTextArea("");
+        receipt.setVisible(true);
+        receipt.setEditable(false);
+        receipt.setLineWrap(true);
+        
+        receiptScrollPane = new JScrollPane(receipt);
+        receiptScrollPane.setBounds(50, 50, 700, 400);
+        receiptScrollPane.setVisible(false);
         
         getLayeredPane().add(exit,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(individual,JLayeredPane.MODAL_LAYER);
@@ -76,6 +103,9 @@ public class View extends JFrame{
         getLayeredPane().add(comConCapacity,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(basket,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(cashDesk,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(comboCashDesk,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(okReceipt,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(receiptScrollPane,JLayeredPane.MODAL_LAYER);
     }
     
     public String getIndCapacity(){
@@ -96,9 +126,10 @@ public class View extends JFrame{
         company.addActionListener(listener);
         basket.addActionListener(listener);
         cashDesk.addActionListener(listener);
+        okReceipt.addActionListener(listener);
     }
 
-    void setShopping() {
+    public void setShopping(List<Integer> cashDeskIDs) {
         exit.setVisible(false);
         individual.setVisible(false);
         company.setVisible(false);
@@ -108,5 +139,24 @@ public class View extends JFrame{
         
         basket.setVisible(true);
         cashDesk.setVisible(true);
+        comboCashDesk.setVisible(true);
+        comboCashDesk.removeAllItems();
+        for(Integer i : cashDeskIDs){
+            comboCashDesk.addItem("Cashdesk number " + i);
+        }
+    }
+    
+    public int getSelectedCashDeskNumber(){
+        return Integer.valueOf(comboCashDesk.getSelectedItem().toString().split(" ")[2]);
+    }
+    
+    public void setServingCustomer(String receipt){
+        basket.setVisible(false);
+        cashDesk.setVisible(false);
+        comboCashDesk.setVisible(false);
+        
+        okReceipt.setVisible(true);
+        this.receipt.setText(receipt);
+        receiptScrollPane.setVisible(true);
     }
 }

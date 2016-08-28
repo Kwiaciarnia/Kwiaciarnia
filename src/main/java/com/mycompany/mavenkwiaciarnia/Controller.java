@@ -7,6 +7,8 @@ package com.mycompany.mavenkwiaciarnia;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Controller implements ActionListener{
@@ -31,7 +33,7 @@ public class Controller implements ActionListener{
                 count = 10;
             }
             model.setCustomer(new Individual(count));
-            view.setShopping();
+            view.setShopping(model.getCashDesksID());
         }else if(ae.getActionCommand().equals("COMPANY")){
             int countB;
             try{
@@ -46,7 +48,17 @@ public class Controller implements ActionListener{
                 countC = 10;
             }
             model.setCustomer(new Company(countB,countC));
-            view.setShopping();
+            view.setShopping(model.getCashDesksID());
+        }else if(ae.getActionCommand().equals("BASKET")){
+            
+        }else if(ae.getActionCommand().equals("CASHDESK")){
+            try {
+                int number = view.getSelectedCashDeskNumber();
+                model.serveCustomer(number);
+                view.setServingCustomer(model.getLastReceipt(number));
+            } catch (Exception ex) {
+                view.setServingCustomer("\tERROR\n" + ex.getMessage());
+            }
         }
     }
     

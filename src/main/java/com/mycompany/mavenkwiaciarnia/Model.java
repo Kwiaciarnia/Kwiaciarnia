@@ -46,5 +46,17 @@ public class Model {
         }
     }
     
+    public String getLastReceipt(int cashDeskID) throws Exception{
+        if (customer != null) {
+            for (CashDesk cashDesk : cashDesks) {
+                if (cashDesk.getID() == cashDeskID) {
+                    return cashDesk.getLastReceipt();
+                }
+            }
+            throw new Exception("Model hasn't cashdesk with id " + cashDeskID);
+        }else{
+            throw new Exception("Model hasn't set customer");
+        }
+    }
     
 }
