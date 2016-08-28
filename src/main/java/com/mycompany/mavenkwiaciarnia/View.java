@@ -9,18 +9,19 @@ package com.mycompany.mavenkwiaciarnia;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class View extends JFrame{
+public class View extends JFrame implements FocusListener{
     JButton exit;
     JButton individual;
     JButton company;
@@ -33,6 +34,12 @@ public class View extends JFrame{
     JButton okReceipt;
     JTextArea receipt;
     JScrollPane receiptScrollPane;
+    JComboBox names;
+    JComboBox colours;
+    JButton add;
+    JComboBox flowers;
+    JButton remove;
+    JButton okBasket;
 
     public View() {
         super("Florist's");
@@ -60,12 +67,15 @@ public class View extends JFrame{
         
         indCapacity = new JTextField("Write you basket capacity");
         indCapacity.setBounds(250, 100, 300, 50);
+        indCapacity.addFocusListener(this);
         
         comBoxCapacity = new JTextField("Write you box capacity");
         comBoxCapacity.setBounds(250, 200, 150, 50);
+        comBoxCapacity.addFocusListener(this);
         
         comConCapacity = new JTextField("Write you container capacity");
         comConCapacity.setBounds(250+150, 200, 150, 50);
+        comConCapacity.addFocusListener(this);
         
         basket = new JButton("BASKET");
         basket.setVisible(false);
@@ -95,6 +105,40 @@ public class View extends JFrame{
         receiptScrollPane.setBounds(50, 50, 700, 400);
         receiptScrollPane.setVisible(false);
         
+        names = new JComboBox();
+        names.setBounds(50, 50, 300, 50);
+        names.addItem("Daisy");
+        names.addItem("Lily");
+        names.addItem("Narcissus");
+        names.addItem("Tulip");
+        names.setVisible(false);
+        
+        colours = new JComboBox();
+        colours.setBounds(50, 100, 300, 50);
+        for(NameColourClass.Colour c : NameColourClass.Colour.values()){
+            colours.addItem(c.toString());
+        }
+        colours.setVisible(false);
+        
+        add = new JButton("ADD");
+        add.setVisible(false);
+        add.setBounds(400 , 75, 200 , 50);
+        add.setActionCommand("ADD");
+        
+        remove = new JButton("REMOVE");
+        remove.setVisible(false);
+        remove.setBounds(400, 300, 200 , 50);
+        remove.setActionCommand("REMOVE");
+        
+        flowers = new JComboBox();
+        flowers.setBounds(50, 300, 300, 50);
+        flowers.setVisible(false);
+        
+        okBasket = new JButton("OK");
+        okBasket.setVisible(false);
+        okBasket.setBounds(250 , 500, 300 , 50);
+        okBasket.setActionCommand("OKBASKET");
+        
         getLayeredPane().add(exit,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(individual,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(company,JLayeredPane.MODAL_LAYER);
@@ -106,6 +150,12 @@ public class View extends JFrame{
         getLayeredPane().add(comboCashDesk,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(okReceipt,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(receiptScrollPane,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(names,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(colours,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(add,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(remove,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(flowers,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(okBasket,JLayeredPane.MODAL_LAYER);
     }
     
     public String getIndCapacity(){
@@ -127,6 +177,32 @@ public class View extends JFrame{
         basket.addActionListener(listener);
         cashDesk.addActionListener(listener);
         okReceipt.addActionListener(listener);
+        add.addActionListener(listener);
+        remove.addActionListener(listener);
+        okBasket.addActionListener(listener);
+    }
+    
+    public void setMainMenu(){
+        indCapacity.setText("Write you basket capacity");
+        comBoxCapacity.setText("Write you box capacity");
+        comConCapacity.setText("Write you container capacity");
+        exit.setVisible(true);
+        individual.setVisible(true);
+        company.setVisible(true);
+        indCapacity.setVisible(true);
+        comBoxCapacity.setVisible(true);
+        comConCapacity.setVisible(true);
+        basket.setVisible(false);
+        cashDesk.setVisible(false);
+        comboCashDesk.setVisible(false);
+        okReceipt.setVisible(false);
+        receiptScrollPane.setVisible(false);
+        names.setVisible(false);
+        colours.setVisible(false);
+        add.setVisible(false);
+        flowers.setVisible(false);
+        remove.setVisible(false);
+        okBasket.setVisible(false);
     }
 
     public void setShopping(List<Integer> cashDeskIDs) {
@@ -136,6 +212,12 @@ public class View extends JFrame{
         indCapacity.setVisible(false);
         comBoxCapacity.setVisible(false);
         comConCapacity.setVisible(false);
+        names.setVisible(false);
+        colours.setVisible(false);
+        add.setVisible(false);
+        flowers.setVisible(false);
+        remove.setVisible(false);
+        okBasket.setVisible(false);
         
         basket.setVisible(true);
         cashDesk.setVisible(true);
@@ -144,6 +226,8 @@ public class View extends JFrame{
         for(Integer i : cashDeskIDs){
             comboCashDesk.addItem("Cashdesk number " + i);
         }
+        okReceipt.setVisible(false);
+        receiptScrollPane.setVisible(false);
     }
     
     public int getSelectedCashDeskNumber(){
@@ -151,12 +235,67 @@ public class View extends JFrame{
     }
     
     public void setServingCustomer(String receipt){
+        exit.setVisible(false);
+        individual.setVisible(false);
+        company.setVisible(false);
+        indCapacity.setVisible(false);
+        comBoxCapacity.setVisible(false);
+        comConCapacity.setVisible(false);
         basket.setVisible(false);
         cashDesk.setVisible(false);
         comboCashDesk.setVisible(false);
         
+        names.setVisible(false);
+        colours.setVisible(false);
+        add.setVisible(false);
+        flowers.setVisible(false);
+        remove.setVisible(false);
+        okBasket.setVisible(false);
+        
         okReceipt.setVisible(true);
         this.receipt.setText(receipt);
         receiptScrollPane.setVisible(true);
+    }
+    
+    public void setBasket(List<Flower> flowersList){
+        exit.setVisible(false);
+        individual.setVisible(false);
+        company.setVisible(false);
+        indCapacity.setVisible(false);
+        comBoxCapacity.setVisible(false);
+        comConCapacity.setVisible(false);
+        basket.setVisible(false);
+        cashDesk.setVisible(false);
+        comboCashDesk.setVisible(false);
+        okReceipt.setVisible(false);
+        receiptScrollPane.setVisible(false);
+        
+        names.setVisible(true);
+        colours.setVisible(true);
+        add.setVisible(true);
+        flowers.setVisible(true);
+        remove.setVisible(true);
+        okBasket.setVisible(true);
+        
+        flowers.removeAllItems();
+        for(Flower f : flowersList){
+            flowers.addItem(f.getDescription());
+        }
+    }
+
+    @Override
+    public void focusGained(FocusEvent fe) {
+        if(fe.getSource() == indCapacity){
+            indCapacity.setText("");
+        }else if(fe.getSource() == comBoxCapacity){
+            comBoxCapacity.setText("");
+        }else if(fe.getSource() == comConCapacity){
+            comConCapacity.setText("");
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent fe) {
+    
     }
 }

@@ -24,6 +24,10 @@ public class Model {
     public void setCustomer(Customer customer){
         this.customer = customer;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
     
     public List<Integer> getCashDesksID(){
         List<Integer> list = new LinkedList();
