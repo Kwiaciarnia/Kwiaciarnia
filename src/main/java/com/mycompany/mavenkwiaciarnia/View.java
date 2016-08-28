@@ -22,9 +22,11 @@ public class View extends JFrame{
     JTextField indCapacity;
     JTextField comBoxCapacity;
     JTextField comConCapacity;
+    JButton basket;
+    JButton cashDesk;
 
     public View() {
-        super("Kwiaciarnia");
+        super("Florist's");
         setResizable(false);
         setSize(800, 600);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -56,6 +58,15 @@ public class View extends JFrame{
         comConCapacity = new JTextField("Write you container capacity");
         comConCapacity.setBounds(250+150, 200, 150, 50);
         
+        basket = new JButton("BASKET");
+        basket.setVisible(false);
+        basket.setBounds(250 , 150+50, 300 , 50);
+        basket.setActionCommand("BASKET");
+        
+        cashDesk = new JButton("CASHDESK");
+        cashDesk.setVisible(false);
+        cashDesk.setBounds(250 , 150+100+100, 300 , 50);
+        cashDesk.setActionCommand("CASHDESK");
         
         getLayeredPane().add(exit,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(individual,JLayeredPane.MODAL_LAYER);
@@ -63,6 +74,8 @@ public class View extends JFrame{
         getLayeredPane().add(indCapacity,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(comBoxCapacity,JLayeredPane.MODAL_LAYER);
         getLayeredPane().add(comConCapacity,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(basket,JLayeredPane.MODAL_LAYER);
+        getLayeredPane().add(cashDesk,JLayeredPane.MODAL_LAYER);
     }
     
     public String getIndCapacity(){
@@ -81,6 +94,8 @@ public class View extends JFrame{
         exit.addActionListener(listener);
         individual.addActionListener(listener);
         company.addActionListener(listener);
+        basket.addActionListener(listener);
+        cashDesk.addActionListener(listener);
     }
 
     void setShopping() {
@@ -90,5 +105,8 @@ public class View extends JFrame{
         indCapacity.setVisible(false);
         comBoxCapacity.setVisible(false);
         comConCapacity.setVisible(false);
+        
+        basket.setVisible(true);
+        cashDesk.setVisible(true);
     }
 }
